@@ -1,0 +1,79 @@
+// Get coin names collection.
+GET http://localhost:3000/coins/
+Content-Type: application/json
+Authorization: x-client-key
+
+###
+
+// Test coin names collection, illegal route.
+GET http://localhost:3000/coins/examAPI
+Content-Type: application/json
+Authorization: x-client-key
+
+###
+
+// Test coin names collection, unauthorized user.
+GET http://localhost:3000/coins/
+Content-Type: application/json
+Authorization: x-unauthorized-key
+
+###
+
+// Get coin names collection, according to symbol param.
+GET http://localhost:3000/coins/?symbol=BTC,SUP,ETH
+Content-Type: application/json
+Authorization: x-admin-key
+
+###
+
+// Get coin names collection, according to algorithm param.
+GET http://localhost:3000/coins/?algorithm=Scrypt
+Content-Type: application/json
+Authorization: x-client-key
+
+###
+
+// Get full coin description, according to symbol param.
+GET http://localhost:3000/coins/BTC
+Content-Type: application/json
+Authorization: x-client-key
+
+###
+
+// Test full coin description, unauthorized user.
+GET http://localhost:3000/coins/BTC
+Content-Type: application/json
+Authorization: x-unauthorized-key
+
+###
+
+// Set cache ttl time.
+POST http://localhost:3000/cachettl
+Content-Type: application/json
+Authorization: x-admin-key
+
+{    
+    "ttl": 20000
+}
+
+###
+
+// Test Set cache ttl time, unauthorized user (client).
+POST http://localhost:3000/cachettl
+Content-Type: application/json
+Authorization: x-client-key
+
+{    
+    "ttl": 200000
+}
+
+###
+
+// Test Set cache ttl time, unauthorized user.
+POST http://localhost:3000/cachettl
+Content-Type: application/json
+Authorization: x-unauthorized-key
+
+{    
+    "ttl": 200000
+}
